@@ -6,10 +6,18 @@ class User < ActiveRecord::Base
 
   validates :username, :presence => true, :uniqueness => { :case_sensitive => false }
 
+  has_many :wikis
   # Only allow letter, number, underscore, and punctuation.
   validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
 
+  after_initialize :set_role
   attr_accessor :login
+
+  enum role: [:standard, :premium, :admin]
+
+  def set_role
+    self.role ||= :standard
+  end
 
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
