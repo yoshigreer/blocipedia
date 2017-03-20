@@ -12,7 +12,10 @@
   Signed in as: <strong><%= current_user.email %></strong> |
   <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> - <%= link_to "Sign Out", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
   <% if current_user.premium? %>
-    <%= link_to "Downgrade", users_downgrade_path(current_user), method: :put, class: 'btn btn-warning', data: {confirm: 'Are you sure you want to downgrade?'} %>
+    <%= link_to "Downgrade", users_downgrade_path(current_user), method: :put, class: 'btn btn-warning btn-sm', data: {confirm: 'Are you sure you want to downgrade?'} %>
+  <% end %>
+  <% if current_user.standard? %>
+    <%= link_to "Upgrade", new_charge_path, class: 'btn btn-success btn-sm' %>
   <% end %>
 <% else %>
 # #2
