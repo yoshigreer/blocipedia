@@ -31,6 +31,13 @@ admin = User.create!(
   role: 'admin'
 )
 
+premium = User.create!(
+  username: 'premium',
+  email: 'premium@example.com',
+  password: 'helloworld',
+  role: 'premium'
+)
+
 puts "seed finished"
 puts "#{User.count} users created"
 puts "#{Wiki.count} wikis created"
