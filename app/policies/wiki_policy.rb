@@ -17,7 +17,7 @@ class WikiPolicy < ApplicationPolicy
         scope.all
       elsif user.standard?
         puts "standard"
-        scope.where(private: nil)
+        scope.where(private: false)
       elsif user.premium?
         puts "premium"
         user_wikis = []
