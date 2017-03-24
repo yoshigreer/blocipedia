@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
 
   validates :username, :presence => true, :uniqueness => { :case_sensitive => false }
 
+  has_many :collaborators
+  #  has_many :collaborations, through: :collaborators, source: :wiki
   has_many :wikis
   # Only allow letter, number, underscore, and punctuation.
   validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true

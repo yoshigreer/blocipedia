@@ -1,7 +1,15 @@
 Rails.application.routes.draw do
+  get 'collaborators/create'
+
+  post '/wikis/:id/edit' => 'collaborators#create'
+
+  resources :collaborators, only: [:create, :destroy]
+
   put 'users/downgrade'
 
-  resources :wikis
+  resources :wikis do
+    # resources :collaborators, only: [:create, :destroy]
+  end
   resources :charges, only: [:new, :create]
 
   devise_for :users
@@ -9,7 +17,6 @@ Rails.application.routes.draw do
   get 'welcome/index'
 
   get 'welcome/about'
-
 
   root 'welcome#index'
   # The priority is based upon order of creation: first created -> highest priority.
