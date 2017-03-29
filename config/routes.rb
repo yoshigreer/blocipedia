@@ -1,14 +1,14 @@
 Rails.application.routes.draw do
   get 'collaborators/create'
 
-  post '/wikis/:id/edit' => 'collaborators#create'
+  # post '/wikis/:id/edit' => 'collaborators#create'
 
-  resources :collaborators, only: [:create, :destroy]
+  # resources :collaborators, only: [:create, :destroy]
 
   put 'users/downgrade'
 
   resources :wikis do
-    # resources :collaborators, only: [:create, :destroy]
+    resources :collaborators, only: [:create, :destroy]
   end
   resources :charges, only: [:new, :create]
 

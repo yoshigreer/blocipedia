@@ -4,16 +4,16 @@
     <p><%= markdown(@wiki.body) %></p>
   </div>
   <div class="col-md-8">
-    <% if @wiki.collaborators.empty? %>
+    <% if !@wiki.collaborators.empty? %>
       <h2>Collaborators</h2>
       <p>
         <% @wiki.collaborators.each do |collaborator| %>
           <h4><%= collaborator.user.email %></h4>
+          <% if @wiki.user == current_user %>
+            <%= link_to "Delete", wiki_collaborator_path(@wiki, collaborator.user), method: :delete, class: 'glyphicon glyphicon-remove' %>
+          <% end %>
         <% end %>
       </p>
-      <% if @wiki.user == current_user %>
-        <%= link_to "Delete", collaborator_path, method: :delete, class: 'glyphicon glyphicon-remove' %>
-      <% end %>
     <% end %>
   </div>
   <div class="col-md-4">
