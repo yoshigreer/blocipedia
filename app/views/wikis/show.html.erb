@@ -9,9 +9,9 @@
       <p>
         <% @wiki.collaborators.each do |collaborator| %>
           <h4><%= collaborator.user.email %></h4>
-          <% if @wiki.user == current_user %>
-            <%= link_to "Delete", wiki_collaborator_path(@wiki, collaborator.user), method: :delete, class: 'glyphicon glyphicon-remove' %>
-          <% end %>
+          <% # if @wiki.user == current_user %>
+            <%= link_to "Delete", collaborator_path(@wiki, user_id: collaborator.user), method: :delete, class: 'glyphicon glyphicon-remove' %>
+          <% # end %>
         <% end %>
       </p>
     <% end %>

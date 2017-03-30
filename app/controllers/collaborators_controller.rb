@@ -1,6 +1,6 @@
 class CollaboratorsController < ApplicationController
   def create
-    raise params.inspect
+    # raise params.inspect
 
     wiki = Wiki.find_by(id: params["/collaborators"][:wiki_id])
     user = User.find_by(email: params["/collaborators"][:email])
