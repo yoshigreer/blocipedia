@@ -21,7 +21,15 @@ class CollaboratorsController < ApplicationController
   end
 
   def destroy
-    raise params.inspect
+    @collaborator = Collaborator.find_by(user_id: params[:user_id], wiki_id: params[:id])
+
+    # raise collaboration.inspect
+
+    if @collaborator.destroy
+      flash[:notice] = "#{@collaborator.user.email} was removed."
+    else
+      flash[:error] = "Could not remove collaborator."
+    end
     redirect_to wiki_path
   end
 end
